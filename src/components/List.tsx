@@ -25,8 +25,6 @@ const List = () => {
                         todoId={todo.id}
                         title={todo.title}
                         checked={todo.checked}
-                        handleDelete={deleteTodo}
-                        handleCheckedElement={checkTodo}
                     />
                 ))}
             </div>
