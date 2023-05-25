@@ -1,16 +1,18 @@
-import { useState } from "react"
+import { TodoListContext } from "@/context/TodoListContext"
+import { useContext, useState } from "react"
 interface props {
     handleFormSubmit: (inputValue: string) => void
 }
 
-const ListForm = ({handleFormSubmit}: props) => {
+const ListForm = () => {
+    const {createTodo} = useContext(TodoListContext)
     const [inputValue, setInputValue] = useState<string>('')
     
     const handleSubmit = (e: any) => {
         e.preventDefault()
         
         if(inputValue !== '') {
-            handleFormSubmit(inputValue)
+            createTodo(inputValue)
             setInputValue('')
         }
     }

@@ -1,14 +1,15 @@
-import { displayPartsToString } from "typescript"
+import { useContext } from "react"
+import { TodoListContext } from "@/context/TodoListContext"
 
 interface ListItemT {
     todoId: number
     title: string
     checked: boolean
-    handleDelete: any
-    handleCheckedElement: any
 }
 
-const ListItem = ({todoId, title, checked, handleDelete, handleCheckedElement}: ListItemT) => {
+const ListItem = ({todoId, title, checked}: ListItemT) => {
+    const {deleteTodo, checkTodo} = useContext(TodoListContext)
+   
     const listItemStyles = {
         display: 'flex', 
         flexFlow: 'row',
@@ -25,10 +26,10 @@ const ListItem = ({todoId, title, checked, handleDelete, handleCheckedElement}: 
     
     return (
         <li style={listItemStyles}>
-            <button style={buttonStyles} onClick={() => handleCheckedElement(todoId)}>{checked ? 'un check' : 'check'}</button>
+            <button style={buttonStyles} onClick={() => checkTodo(todoId)}>{checked ? 'un check' : 'check'}</button>
             <p>{title}</p>
             <button 
-                onClick={() => handleDelete(todoId)}
+                onClick={() => deleteTodo(todoId)}
                 style={buttonStyles}
                 >X
             </button>
